@@ -21,7 +21,7 @@ This project is inspired by the idea of building a data warehouse ETL pipeline f
    - 4.gold.ipynb: Aggregate features and create gold layer tables.
 2. Make sure you have set up Azure Data Lake IAM permissions and Databricks connection (refer to the YouTube tutorial link at the beginning of 2.bronze.ipynb).
 
-## Good SQL to learn (indicate the corresponding file for each):
+## Good SQL to learn:
 - Create Schema and Catalog (1.data architecture.ipynb)
   ```sql
   USE CATALOG kenworkspace;
