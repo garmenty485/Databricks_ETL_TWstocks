@@ -22,35 +22,42 @@ This project is inspired by the idea of building a data warehouse ETL pipeline f
 2. Make sure you have set up Azure Data Lake IAM permissions and Databricks connection (refer to the YouTube tutorial link at the beginning of 2.bronze.ipynb).
 
 ## Good SQL to learn:
-- Create Schema and Catalog (1.data architecture.ipynb)
+- **Window Functions for Running Maximum (3.silver.ipynb)**
   ```sql
-  USE CATALOG kenworkspace;
-  CREATE SCHEMA IF NOT EXISTS TW_stocks_db;
+  MAX(volume) OVER (ORDER BY date) AS max_volume_so_far
   ```
-- Create Bronze layer tables (2.bronze.ipynb)
+  *Purpose: Calculates the running maximum of volume up to each row, useful for identifying record highs.*
+
+- **LAG with IGNORE NULLS for Last Record Retrieval (3.silver.ipynb)**
+  ```sql
+  LAG(CASE WHEN mvrh THEN volume ELSE NULL END) IGNORE NULLS OVER (ORDER BY date) AS last_mvrh_volume
+  ```
+  *Purpose: Retrieves the last non-null value of a column (e.g., last record high volume), skipping nulls, which is powerful for time series analysis.*
+
+- **Complex Feature Engineering with Pandas UDF (3.silver.ipynb)**
   ```python
-  df_combined.write \
-      .format("delta") \
-      .mode("overwrite") \
-      .saveAsTable(f"kenworkspace.tw_stocks_db.bronze_{folder[0]}")
+  @pandas_udf(returnType=StructType([...]))
+  def calculate_future_returns(closes: pd.Series, highs: pd.Series, lows: pd.Series) -> pd.DataFrame:
+      # ...
   ```
-- Silver layer monthly feature engineering (3.silver.ipynb)
+  *Purpose: Uses Pandas UDF to calculate future window-based statistics (e.g., 60-day future high/low returns) efficiently in Spark.*
+
+- **Lateral Join (LEFT JOIN LATERAL) for Latest Related Record (4.gold.ipynb)**
   ```sql
-  CREATE OR REPLACE TABLE kenworkspace.tw_stocks_db.silver_mvrh_monthly AS
-    WITH base AS (...)
-    ...
+  LEFT JOIN LATERAL (
+    SELECT * FROM monthly_mvrh mm
+    WHERE mm.mvrh_month_date < DATE_TRUNC('month', d.date)
+    ORDER BY mm.mvrh_month_date DESC
+    LIMIT 1
+  ) mm
   ```
-- Silver layer daily feature engineering (3.silver.ipynb)
-  ```python
-  @pandas_udf(...)
-  def calculate_future_returns(...):
-      ...
-  ```
-- Gold layer aggregation and labeling (4.gold.ipynb)
+  *Purpose: For each daily record, finds the most recent monthly record high before that day. This is a powerful pattern for time-aligned joins.*
+
+- **Boolean Labeling and Conditional Logic (4.gold.ipynb)**
   ```sql
-  CREATE OR REPLACE TABLE kenworkspace.tw_stocks_db.gold_ml_mvrh_daily AS
-    WITH monthly_mvrh AS (...), ...
+  (60fhr_percent > 20 AND 60flr_percent > -10) AS 60_days_profitable
   ```
+  *Purpose: Creates a boolean label for ML based on multiple conditions, useful for classification tasks.*
 
 ## What's next:
 - More features.
