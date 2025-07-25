@@ -4,7 +4,7 @@
 This project is inspired by the idea of building a data warehouse ETL pipeline for Taiwan stocks, aiming to explore quantitative trading strategies related to MVRH (Monthly Volume Record High) and machine learning applications. The design follows the Databricks multi-layer data lake architecture (Bronze/Silver/Gold) and integrates Azure Data Lake Storage as the storage source.
 
 ## What it does:
-- Connects to Azure Data Lake and reads daily and monthly Parquet candlesticks data for Taiwan stocks (using 2330 as an example).
+- Connects to Azure Data Lake and reads daily and monthly Parquet candlesticks data for Taiwan stocks (using 2330[TSMC] as an example).
 - Bronze layer: Extracts raw daily and monthly data and stores them as Delta Tables.
 - Silver layer:
   - Checks for missing values.
