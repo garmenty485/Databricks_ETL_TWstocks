@@ -1,59 +1,60 @@
 # DW_ETL_TWstocks
 
 ## Inspiration:
-本專案靈感來自於希望建立一個台灣股票的數據倉儲（Data Warehouse）ETL流程，並以此探索量化交易策略與機器學習應用。專案設計參考了Databricks的多層資料湖（Bronze/Silver/Gold）架構，並結合Azure Data Lake作為儲存來源。
+This project is inspired by the idea of building a data warehouse ETL pipeline for Taiwan stocks, aiming to explore quantitative trading strategies related to MVRH (Monthly Volume Record High) and machine learning applications. The design follows the Databricks multi-layer data lake architecture (Bronze/Silver/Gold) and integrates Azure Data Lake Storage as the storage source.
 
 ## What it does:
-- 連接Azure Data Lake，讀取台灣股票（以2330為例）每日與每月的Parquet數據。
-- Bronze層：彙整原始每日、每月資料，存為Delta Table。
-- Silver層：
-  - 檢查缺失值。
-  - 對月資料計算歷史最大成交量（MVRH）及距離上次MVRH的百分比。
-  - 對日資料計算未來60日內最高/最低報酬率。
-- Gold層：
-  - 將Silver層特徵進一步彙整，產生可用於機器學習的表格（如距離MVRH的天數、報酬率、是否60天內獲利等標籤）。
+- Connects to Azure Data Lake and reads daily and monthly Parquet candlesticks data for Taiwan stocks (using 2330 as an example).
+- Bronze layer: Extracts raw daily and monthly data and stores them as Delta Tables.
+- Silver layer:
+  - Checks for missing values.
+  - For monthly data feature engineering: calculates Monthly Volume Record High (MVRH) and the percentage distance from the last MVRH.
+  - For daily data feature engineering: calculates the highest/lowest return in the next 60 days.
+- Gold layer:
+  - Further aggregates features from the Silver layer to produce tables suitable for machine learning (e.g., days since last MVRH, return rates, 60-day profitability labels, etc.).
 
 ## How to start it (databricks):
-1. 在Databricks建立Notebook，依序上傳並執行本專案的ipynb檔案：
-   - 1.data architecture.ipynb：建立Catalog與Schema。
-   - 2.bronze.ipynb：連接Azure Data Lake，建立bronze層資料表。
-   - 3.silver.ipynb：進行資料清理與特徵工程，建立silver層資料表。
-   - 4.gold.ipynb：彙整特徵，建立gold層資料表。
-2. 請確保已設定好Azure Data Lake的IAM權限與Databricks連線（參考2.bronze.ipynb開頭的YouTube教學連結）。
+1. In Databricks, create a new Notebook and upload/execute the project notebooks in order:
+   - 1.data architecture.ipynb: Create Catalog and Schema.
+   - 2.bronze.ipynb: Connect to Azure Data Lake and create bronze layer tables.
+   - 3.silver.ipynb: Perform data cleaning and feature engineering to create silver layer tables.
+   - 4.gold.ipynb: Aggregate features and create gold layer tables.
+2. Make sure you have set up Azure Data Lake IAM permissions and Databricks connection (refer to the YouTube tutorial link at the beginning of 2.bronze.ipynb).
 
 ## Good SQL to learn (indicate the corresponding file for each):
-- 建立Schema與Catalog（1.data architecture.ipynb）
+- Create Schema and Catalog (1.data architecture.ipynb)
   ```sql
   USE CATALOG kenworkspace;
   CREATE SCHEMA IF NOT EXISTS TW_stocks_db;
   ```
-- 建立Bronze層表格（2.bronze.ipynb）
+- Create Bronze layer tables (2.bronze.ipynb)
   ```python
   df_combined.write \
       .format("delta") \
       .mode("overwrite") \
       .saveAsTable(f"kenworkspace.tw_stocks_db.bronze_{folder[0]}")
   ```
-- Silver層月資料特徵工程（3.silver.ipynb）
+- Silver layer monthly feature engineering (3.silver.ipynb)
   ```sql
   CREATE OR REPLACE TABLE kenworkspace.tw_stocks_db.silver_mvrh_monthly AS
     WITH base AS (...)
     ...
   ```
-- Silver層日資料特徵工程（3.silver.ipynb）
+- Silver layer daily feature engineering (3.silver.ipynb)
   ```python
   @pandas_udf(...)
   def calculate_future_returns(...):
       ...
   ```
-- Gold層資料彙整與標籤（4.gold.ipynb）
+- Gold layer aggregation and labeling (4.gold.ipynb)
   ```sql
   CREATE OR REPLACE TABLE kenworkspace.tw_stocks_db.gold_ml_mvrh_daily AS
     WITH monthly_mvrh AS (...), ...
   ```
 
 ## What's next:
-- 增加更多股票代碼的自動化處理與批次ETL。
-- 將Gold層資料導入MLflow或其他ML平台進行模型訓練與評估。
-- 增加資料視覺化與自動化報表。
-- 強化資料品質檢查與異常偵測。
+- More features.
+- Automate ETL and batch processing for more stock symbols using DLT and Autoloader with scheduler.
+- Import Gold layer data into MLflow or other ML platforms for model training and evaluation.
+- Add data visualization and automated reporting.
+- Enhance data quality checks and anomaly detection.
