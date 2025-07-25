@@ -9,7 +9,7 @@ This project is inspired by the idea of building a data warehouse ETL pipeline f
 - Silver layer:
   - Checks for missing values.
   - For monthly data feature engineering: calculates Monthly Volume Record High (MVRH) and the percentage distance from the last MVRH.
-  - For daily data feature engineering: calculates the highest/lowest return in the next 60 days.
+  - For daily data feature engineering: calculates the highest/lowest return in the next 60 days. Note the definition of lowest return is the lowest "before" it hits the highest point during the period.
 - Gold layer:
   - Further aggregates features from the Silver layer to produce tables suitable for machine learning (e.g., days since last MVRH, return rates, 60-day profitability labels, etc.).
 
