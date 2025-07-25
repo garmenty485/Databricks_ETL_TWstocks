@@ -1,4 +1,5 @@
 # DW_ETL_TWstocks
+[video review](https://youtu.be/v6nYd0esfg8)
 
 ## Inspiration:
 This project is inspired by the idea of building a data warehouse ETL pipeline for Taiwan stocks, aiming to explore quantitative trading strategies related to MVRH (Monthly Volume Record High) and machine learning applications. The design follows the Databricks multi-layer data lake architecture (Bronze/Silver/Gold) and integrates Azure Data Lake Storage as the storage source.
