@@ -17,8 +17,32 @@
 3. Watch my video.
 
 ## Good SQL/Pyspark to learn:
-- **XXX**
+- **Window Functions for Running Maximum (Silver Layer)**
   ```sql
-  XXXX
+  MAX(volume) OVER (ORDER BY date) AS max_volume_so_far
   ```
-  *Purpose: XXXXX.*
+  *Purpose: Calculates the running maximum of volume up to each row, useful for identifying record highs.*
+
+- **All-Spark Distributed Feature Engineering (advanced-dlt pipeline)**
+  ```python
+  # Using PySpark DataFrame and Window functions to calculate 60-day future high/low returns
+  from pyspark.sql.window import Window
+  from pyspark.sql.functions import col, max as spark_max, min as spark_min, row_number
+  # ... see 2python.dlt_pipeline.ipynb for full logic
+  ```
+  *Purpose: Leverages Spark's distributed computation (Window, Join, GroupBy, etc.) to process large-scale data efficiently. All feature engineering is performed on the Spark cluster, making it scalable and production-ready.*
+
+- **Pandas UDF for Complex Feature Engineering (basic-manual pipeline)**
+  ```python
+  @pandas_udf(returnType=StructType([...]))
+  def calculate_future_returns(closes: pd.Series, highs: pd.Series, lows: pd.Series) -> pd.DataFrame:
+      # Use pandas to loop and calculate future high/low returns for each row
+  ```
+  *Purpose: Uses pandas for complex logic, which is intuitive and easy to debug. Suitable for small data or prototyping, but not scalable for big data.*
+
+- **Design Difference**
+  > The advanced-dlt pipeline uses all-Spark distributed computation for the silver layer, suitable for large-scale, scalable ETL. The basic-manual pipeline uses pandas UDF for the silver layer, which is easier for teaching and prototyping but not suitable for big data. This design demonstrates both production-grade and educational approaches. And the most important note is that if you force it to use pandas for dealing with the calculation logics in silver layer, the fhr/flr features would be totally wrong because spark is inherently set between tables in DLT pipeline so the data index would be messy when we send them to pandas udf because spark's distributed processing and possible shuffling.
+
+  ## Reminder:
+  I use both SQL and pyspark in this project. This is not necessary. I do this for learning purposes.
+  (It's not allowed to use one notebook containing sql and python at the same time in DLT. So setting them into different notebooks is needed.)
