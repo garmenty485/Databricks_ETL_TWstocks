@@ -1,5 +1,6 @@
 # Databricks_ETL_TWstocks
-[video review](https://youtu.be/XXX)
+- ### [video review](https://youtu.be/XXX)
+![medallion](./medallion.JPG)
 
 ## What it does:
 - Connects to Azure Data Lake and reads daily and monthly Parquet candlesticks data for Taiwan stocks (using 2330[TSMC] as an example).
