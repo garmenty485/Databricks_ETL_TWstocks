@@ -13,7 +13,7 @@
 
 ## How to start it (databricks):
 1. In Databricks, create a new pipeline and set the source codes as 2python.dlt_pipeline and 2sql.dlt_pipeline:
-2. Make sure you have set up Azure Data Lake IAM permissions and Databricks connection (refer to the [YouTube tutorial](https://www.youtube.com/watch?v=VkjqViooMtQ) link at the beginning of 2.bronze.ipynb).
+2. Make sure you have set up Azure Data Lake IAM permissions and Databricks connection (refer to the [YouTube tutorial](https://www.youtube.com/watch?v=VkjqViooMtQ)).
 3. Watch my video.
 
 ## Good SQL/Pyspark to learn:
