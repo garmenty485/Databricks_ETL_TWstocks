@@ -11,3 +11,8 @@ This project is inspired by the idea of building a Databricks ETL pipeline for T
 - If you're new to Databricks, [basic-manual pipeline](./basic-manual%20pipeline) is a manual ETL pipeline where you might learn something from.
 
 - Both of them are doing the same thing but different way.
+
+## Reminder:
+daily-extration.py and monthly-extration.py are not necessary for this project but their works are necessary. It includes a API for Taiwanese to extract stocks data and sends them to Azure Data Lake Storage Gen2. So if you can't use the API in those file and you really want to run through this project, prepare candle stick data in the way you like and send them to your storage. The data would be like this:
+
+![說明文字](./sample.JPG)
