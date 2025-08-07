@@ -17,7 +17,7 @@
    - 2.bronze.ipynb: Connect to Azure Data Lake and create bronze layer tables.
    - 3.silver.ipynb: Perform data cleaning and feature engineering to create silver layer tables.
    - 4.gold.ipynb: Aggregate features and create gold layer tables.
-2. Make sure you have set up Azure Data Lake IAM permissions and Databricks connection (refer to the YouTube tutorial link at the beginning of 2.bronze.ipynb).
+2. Make sure you have set up Azure Data Lake IAM permissions and Databricks connection (refer to the [YouTube tutorial](https://www.youtube.com/watch?v=VkjqViooMtQ) link at the beginning of 2.bronze.ipynb).
 
 ## Good SQL/Pyspark to learn:
 - **Window Functions for Running Maximum (3.silver.ipynb)**
