@@ -4,9 +4,8 @@
 
 ## What it does:
 - Connects to Azure Data Lake and reads daily and monthly Parquet candlesticks data for Taiwan stocks (using 2330[TSMC] as an example).
-- Bronze layer: Extracts raw daily and monthly data and stores them as Delta Tables. With Autoloader's help, we can incrementally fetch new data from the source storage instead of scanning the whole source.
+- Bronze layer: Extracts raw daily and monthly data and stores them as Delta Tables. With Autoloader's help, we can incrementally fetch new data from the source storage instead of scanning the whole source. It tests data quality by "expect".
 - Silver layer:
-  - Checks for missing values.
   - For monthly data feature engineering: calculates Monthly Volume Record High (MVRH) and the percentage distance from the last MVRH.
   - For daily data feature engineering: calculates the highest/lowest return in the next 60 days. Note the definition of lowest return is the lowest "before" it hits the highest point during the period.
 - Gold layer:
