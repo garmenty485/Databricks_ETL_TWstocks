@@ -1,6 +1,6 @@
 # Databricks_ETL_TWstocks
 
-###For Recuiters:
+### For Recuiters:
 I recommend watching [this video] for a quick assessment of my abilities. The video is a review of this project.
 
 ## Inspiration:
