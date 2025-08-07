@@ -4,7 +4,7 @@
 I recommend watching [this video] for a quick assessment of my abilities. The video is a review of this project.
 
 ## Inspiration:
-This project is inspired by the idea of building a Databricks ETL pipeline for Taiwan stocks, aiming to explore quantitative trading strategies related to MVRH (Monthly Volume Record High). The design follows the Databricks multi-layer data lake architecture (Bronze/Silver/Gold) and integrates Azure Data Lake Storage Gen2 as the storage source.
+This project is inspired by the idea of building a Databricks ETL pipeline for Taiwan stocks, aiming to explore quantitative trading strategies related to MVRH (Monthly Volume Record High). MVRH is the feature that I want to explore more by ML. The design follows the Databricks multi-layer data lake architecture (Bronze/Silver/Gold) and integrates Azure Data Lake Storage Gen2 as the storage source.
 
 ## Navigation:
 - The main part is in [advanced-dlt pipeline](./advanced-dlt%20pipeline), where I implemented a "Lakeflow Declarative Pipeline" (also known as "DLT") to complete this project.
