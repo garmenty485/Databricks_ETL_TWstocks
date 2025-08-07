@@ -1,8 +1,5 @@
 # Databricks_ETL_TWstocks
-[video review](https://youtu.be/v6nYd0esfg8)
-
-## Inspiration:
-This project is inspired by the idea of building a data warehouse ETL pipeline for Taiwan stocks, aiming to explore quantitative trading strategies related to MVRH (Monthly Volume Record High) and machine learning applications. The design follows the Databricks multi-layer data lake architecture (Bronze/Silver/Gold) and integrates Azure Data Lake Storage as the storage source.
+[video review](https://youtu.be/v6nYd0esfg8), I suggest watch it in 2X speed because of my slow English :)
 
 ## What it does:
 - Connects to Azure Data Lake and reads daily and monthly Parquet candlesticks data for Taiwan stocks (using 2330[TSMC] as an example).
@@ -22,7 +19,7 @@ This project is inspired by the idea of building a data warehouse ETL pipeline f
    - 4.gold.ipynb: Aggregate features and create gold layer tables.
 2. Make sure you have set up Azure Data Lake IAM permissions and Databricks connection (refer to the YouTube tutorial link at the beginning of 2.bronze.ipynb).
 
-## Good SQL to learn:
+## Good SQL/Pyspark to learn:
 - **Window Functions for Running Maximum (3.silver.ipynb)**
   ```sql
   MAX(volume) OVER (ORDER BY date) AS max_volume_so_far
@@ -59,10 +56,5 @@ This project is inspired by the idea of building a data warehouse ETL pipeline f
   (60fhr_percent > 20 AND 60flr_percent > -10) AS 60_days_profitable
   ```
   *Purpose: Creates a boolean label for ML based on multiple conditions, useful for classification tasks.*
-
-## What's next:
-- More features.
-- Automate ETL and batch processing for more stock symbols using DLT and Autoloader with scheduler.
-- Import Gold layer data into MLflow or other ML platforms for model training and evaluation.
 - Add data visualization and automated reporting.
 - Enhance data quality checks and anomaly detection.
