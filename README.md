@@ -16,3 +16,9 @@ This project is inspired by the idea of building a Databricks ETL pipeline for T
 daily-extration.py and monthly-extration.py are not necessary for this project but their works are necessary. It includes a API for Taiwanese to extract stocks data and sends them to Azure Data Lake Storage Gen2. So if you can't use the API in those file and you really want to run through this project, prepare candle stick data in the way you like and send them to your storage. The data would be like this:
 
 ![說明文字](./sample.JPG)
+
+## Final Product:
+Is the gold table that contains features I'm interested in exploring more by machine learning:
+
+![說明文字](./sample2.JPG)
+
