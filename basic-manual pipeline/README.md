@@ -56,5 +56,3 @@
   (60fhr_percent > 20 AND 60flr_percent > -10) AS 60_days_profitable
   ```
   *Purpose: Creates a boolean label for ML based on multiple conditions, useful for classification tasks.*
-- Add data visualization and automated reporting.
-- Enhance data quality checks and anomaly detection.
