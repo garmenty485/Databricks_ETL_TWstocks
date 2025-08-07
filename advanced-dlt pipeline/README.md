@@ -22,5 +22,3 @@
   XXXX
   ```
   *Purpose: XXXXX.*
-- Add data visualization and automated reporting.
-- Enhance data quality checks and anomaly detection.
