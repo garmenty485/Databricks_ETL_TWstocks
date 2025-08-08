@@ -8,7 +8,7 @@ This project is inspired by the idea of building a Databricks ELT pipeline for T
 
 ## Navigation:
 - The main part is in [advanced-dlt pipeline](./advanced-dlt%20pipeline), where I implemented a "Lakeflow Declarative Pipeline" (also known as "DLT") to complete this project.
-- If you're new to Databricks, [basic-manual pipeline](./basic-manual%20pipeline) is a manual ETL pipeline where you might learn something from.
+- If you're new to Databricks, [basic-manual pipeline](./basic-manual%20pipeline) is a manual ELT pipeline where you might learn something from.
 
 - Both of them are doing the same thing but different way.
 
