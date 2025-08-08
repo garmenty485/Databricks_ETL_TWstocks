@@ -1,5 +1,5 @@
 # Databricks_ETL_TWstocks
-- ### [video review](https://youtu.be/XXX)
+- ### [video review](https://youtu.be/kbbbPRVhNGA)
 ![medallion](./medallion.JPG)
 
 ## What it does:
