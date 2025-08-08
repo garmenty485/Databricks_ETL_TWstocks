@@ -1,7 +1,7 @@
 # Databricks_ETL_TWstocks
 
 ### For Recuiters:
-I recommend watching [this video] for a quick assessment of my abilities. The video is a review of this project.
+I recommend watching [this video](https://youtu.be/kbbbPRVhNGA) for a quick assessment of my abilities. The video is a review of this project.
 
 ## Inspiration:
 This project is inspired by the idea of building a Databricks ETL pipeline for Taiwan stocks, aiming to explore quantitative trading strategies related to MVRH (Monthly Volume Record High). MVRH is the feature that I want to explore more by ML. The design follows the medallion architecture (Bronze/Silver/Gold) and integrates Azure Data Lake Storage Gen2 as the storage source.
