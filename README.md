@@ -7,8 +7,8 @@ I recommend watching [this video](https://youtu.be/kbbbPRVhNGA) for a quick asse
 This project is inspired by the idea of building a Databricks ELT pipeline for Taiwan stocks, aiming to explore quantitative trading strategies related to MVRH (Monthly Volume Record High). MVRH is the feature that I want to explore more by ML. The design follows the medallion architecture (Bronze/Silver/Gold) and integrates Azure Data Lake Storage Gen2 as the storage source.
 
 ## Navigation:
-- The main part is in [advanced-dlt pipeline](./advanced-dlt%20pipeline), where I implemented a "Lakeflow Declarative Pipeline" (also known as "DLT") to complete this project.
-- If you're new to Databricks, [basic-manual pipeline](./basic-manual%20pipeline) is a manual ELT pipeline where you might learn something from.
+- The main part is in [advanced-dlt pipeline](./advanced-dlt%20pipeline), where I implemented a "Lakeflow Declarative Pipeline" (also known as "DLT") to complete this project. (streaming)
+- If you're new to Databricks, [basic-manual pipeline](./basic-manual%20pipeline) is a manual ELT pipeline where you might learn something from. (batch)
 
 - Both of them are doing the same thing but different way.
 
